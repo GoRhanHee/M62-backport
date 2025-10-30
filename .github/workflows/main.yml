@@ -17,9 +17,6 @@ jobs:
           sudo apt-get install -y git-core flex bison build-essential zip curl \
           zlib1g-dev libc6-dev-i386 lib32z1-dev unzip
 
-      - name: "⭐Checkout repository with submodules"
-        uses: actions/checkout@v4
-
       - name: "🐎Build for specific device"
         run: ./build.sh -m ${{ matrix.device }} -k Y -r N
 
