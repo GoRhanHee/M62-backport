@@ -121,7 +121,7 @@ d2xks)
     exit
 esac
 
-if [[ "$RECOVERY_OPTION" == "y" ]]; then
+if [[ "$RECOVERY_OPTION" == "y" || "$RECOVERY_OPTION" == "Y" ]]; then
     RECOVERY=recovery.config
     KSU_OPTION=n
 fi
@@ -130,7 +130,7 @@ if [ -z $KSU_OPTION ]; then
     read -p "Include KernelSU (y/N): " KSU_OPTION
 fi
 
-if [[ "$KSU_OPTION" == "y" ]]; then
+if [[ "$KSU_OPTION" == "y" || "$KSU_OPTION" == "Y" ]]; then
     KSU=ksu.config
 fi
 
