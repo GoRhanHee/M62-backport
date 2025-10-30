@@ -11,21 +11,27 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - name: "🚄Set up build environment"
+      - name: "Set up build environment"
         run: |
           sudo apt-get update
           sudo apt-get install -y git-core flex bison build-essential zip curl \
           zlib1g-dev libc6-dev-i386 lib32z1-dev unzip
 
-      - name: "🐎Build for specific device"
+      - name: "Import kernel source"
+        uses: actions/checkout@v4    
+
+      - name: "Setting permission"
+        run: chmod +x build.sh
+
+      - name: "Build for specific device"
         run: ./build.sh -m ${{ matrix.device }} -k Y -r N
 
-      - name: "💫Prepare ZIP files for upload"
+      - name: "Prepare ZIP files for upload"
         run: |
           mkdir -p ${{ github.workspace }}/build/out/zip_files
           find ${{ github.workspace }}/build/out/ -type f -name "*.zip" -exec cp {} ${{ github.workspace }}/build/out/zip_files/ \;
 
-      - name: "😎Upload ZIP files as artifact"
+      - name: "Upload ZIP files as artifact"
         uses: actions/upload-artifact@v4
         with:
          name: "GoRhanHee_Kernel-${{ matrix.device }}"
