@@ -246,9 +246,9 @@ if [ -z "$RECOVERY" ]; then
     DATE=`date +"%d-%m-%Y_%H-%M-%S"`    
 
     if [[ "$KSU_OPTION" == "y" ]]; then
-        NAME="$version"_"$MODEL"_UNOFFICIAL_KSU_"$DATE".zip
+        NAME="$MODEL"_UNOFFICIAL_KSU.zip
     else
-        NAME="$version"_"$MODEL"_UNOFFICIAL_"$DATE".zip
+        NAME="$MODEL"_UNOFFICIAL.zip
     fi
     zip -r ../"$NAME" .
     popd > /dev/null
